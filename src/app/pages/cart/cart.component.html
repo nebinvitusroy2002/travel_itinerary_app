@@ -1,0 +1,116 @@
+<!-- CART HERO SECTION -->
+<section class="relative h-[50vh] flex items-center justify-center text-white" style="background-image: url('assets/images/cart-hero.jpg');
+         background-size: cover;
+         background-position: center;">
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- TEXT -->
+  <div class="relative z-10 text-center px-6">
+    <h1 class="text-4xl md:text-5xl font-light tracking-wide">
+      Cart & Summary
+    </h1>
+    <p class="mt-4 text-lg text-gray-200">
+      Review your selected travel experiences
+    </p>
+  </div>
+</section>
+
+<div class="max-w-5xl mx-auto px-6 -mt-24 relative z-10">
+
+  <!-- EMPTY CART STATE -->
+  <div *ngIf="cartItems.length === 0" class="max-w-md mx-auto mt-16 bg-white rounded-2xl shadow-sm p-10 text-center">
+    <div class="text-4xl mb-4">🧳</div>
+
+    <h3 class="text-xl font-medium text-gray-900">
+      Your cart is empty
+    </h3>
+
+    <p class="text-gray-500 mt-2">
+      Looks like you haven’t added any travel experiences yet.
+    </p>
+
+    <button routerLink="/" class="mt-6 inline-block px-6 py-3 rounded-xl
+           bg-gray-900 text-white
+           hover:bg-gray-800
+           hover:scale-105
+           hover:shadow-lg
+           transition-all duration-200">
+      Explore Itineraries
+    </button>
+  </div>
+
+  <!-- CART ITEMS -->
+  <div *ngFor="let item of cartItems" class="group bg-white rounded-xl p-6 mb-6 shadow-sm flex gap-6
+            hover:shadow-lg hover:-translate-y-1
+            transition-all duration-300 ease-out">
+    <!-- IMAGE -->
+    <div class="w-40 h-28 rounded-lg overflow-hidden flex-shrink-0">
+      <img [src]="item.image" [alt]="item.destination" class="w-full h-full object-cover" />
+    </div>
+
+    <!-- CONTENT -->
+    <div class="flex-1">
+      <div class="flex justify-between items-start">
+        <div>
+          <h3 class="font-medium text-lg text-gray-900">
+            {{ item.destination }}, {{ item.country }}
+          </h3>
+
+          <p class="text-sm text-gray-500 mt-1">
+            🍽 {{ item.foodPreference }}
+          </p>
+
+          <p class="text-sm text-gray-500">
+            🎯 {{ item.activities.join(', ') }}
+          </p>
+
+          <p class="text-sm text-gray-500">
+            🏨 {{ item.hotelType }} ({{ item.nights }} nights)
+          </p>
+
+          <p class="text-sm text-gray-500">
+            ✈ Flight Charges: ₹{{ item.flightCharges }}
+          </p>
+        </div>
+
+        <!-- REMOVE BUTTON -->
+        <button (click)="removeItem(item.id)" class="flex items-center gap-1 px-3 py-1.5
+         text-xs font-medium text-red-600
+         border border-red-200 rounded-full
+         hover:bg-red-50 hover:border-red-400
+         transition">
+          ✕ Remove
+        </button>
+      </div>
+
+      <!-- PRICE -->
+      <div class="mt-4 text-lg font-semibold text-gray-900">
+        ₹{{ item.totalCost }}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOTAL AMOUNT -->
+  <div *ngIf="cartItems.length > 0" class="mt-12 p-6 bg-gray-50 rounded-2xl
+         flex justify-between items-center">
+    <div>
+      <p class="text-sm text-gray-500">
+        Total Amount
+      </p>
+      <p class="text-2xl font-semibold text-gray-900">
+        ₹{{ totalAmount }}
+      </p>
+    </div>
+    <button routerLink="/" class="px-6 py-3 rounded-xl
+         bg-gray-900 text-white
+         hover:bg-gray-800
+         hover:scale-105
+         hover:shadow-lg
+         transition-all duration-200 ease-out">
+      Proceed to Checkout
+    </button>
+  </div>
+
+</div>
