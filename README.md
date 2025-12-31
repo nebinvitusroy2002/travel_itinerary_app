@@ -1,7 +1,7 @@
-# TravelItineraryApp
+# Travel Itinerary Web Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
-
+A modern, responsive travel itinerary web application built using **Angular 19** and **Tailwind CSS**.  
+Users can explore curated travel packages, filter destinations, add itineraries to a cart, and view a dynamic cart summary with a polished UI.
 ## Development server
 
 To start a local development server, run:
